@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bruna Camila — espaço exclusivo para maiores de 18 anos.">
+<title>Bruna Camila | Exclusivo +18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--card:#111;--wine:#751426;--wine2:#a21d38;--gold:#d8b34a;--white:#f8f8f8;--muted:#aaa;--line:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Inter,sans-serif;line-height:1.55}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.container{width:min(1180px,calc(100% - 32px));margin:auto}
+.btn{border:0;border-radius:10px;padding:15px 22px;font-weight:800;letter-spacing:.4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.25s;width:100%}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,var(--wine),var(--wine2));color:#fff;box-shadow:0 10px 30px #75142644}
+.gold{background:linear-gradient(135deg,#b68e24,var(--gold));color:#090909}
+.outline{background:transparent;border:1px solid #555;color:#fff}
+section{padding:84px 0}
+h1,h2,h3{font-family:Montserrat,sans-serif}
+.muted{color:var(--muted)}
+/* gate */
+#gate{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;padding:20px}
+.gate-card{width:min(460px,100%);background:#101010;border:1px solid #292929;border-radius:18px;padding:42px 28px;text-align:center;box-shadow:0 30px 100px #000}
+.gate-logo{font-size:13px;letter-spacing:3px;color:var(--gold);font-weight:800;margin-bottom:18px}
+.gate-card h2{font-size:28px;margin-bottom:12px}
+.gate-card p{color:#aaa;margin-bottom:26px}
+.gate-actions{display:grid;gap:12px}
+/* hero */
+.hero{min-height:92vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;background:#090909}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.28) 40%,#050505 100%),url("images/bruna-4.jpg") center 30%/cover no-repeat;filter:saturate(.95)}
+.hero-content{position:relative;padding:100px 0 70px;max-width:760px}
+.eyebrow{display:inline-block;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:15px}
+.hero h1{font-size:clamp(44px,8vw,86px);line-height:.98;text-transform:uppercase;letter-spacing:2px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:clamp(16px,2vw,20px);color:#ddd;max-width:600px;margin:20px 0 28px}
+.hero-actions{display:flex;gap:12px;max-width:540px}
+.hero-actions .btn{width:auto;flex:1}
+/* about */
+.about{background:#090909}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.about-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px #000}
+.section-kicker{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.about h2,.gallery h2,.video h2,.pricing h2{font-size:clamp(30px,5vw,48px);margin:10px 0 18px}
+.about p{color:#bbb;margin-bottom:16px;font-size:17px}
+.telegram-note{margin-top:28px;padding:20px;border-left:3px solid #159bd0;background:#ffffff06;border-radius:8px}
+.telegram-note strong{display:block;margin-bottom:6px}
+.telegram-note .btn{margin-top:15px;width:auto}
+/* gallery */
+.gallery{background:#060606}
+.gallery-head{text-align:center;max-width:700px;margin:auto}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.gallery-item{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/5;border:1px solid #222;background:#111}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.82));display:flex;align-items:flex-end;padding:18px}
+.gallery-overlay span{font-size:12px;color:var(--gold);font-weight:800;letter-spacing:1px}
+/* video */
+.video{text-align:center}
+.video-box{max-width:850px;margin:34px auto 18px;border:1px solid #292929;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 60px #000}
+video{width:100%;display:block;max-height:650px}
+/* pricing */
+.pricing{background:#0a0a0a}
+.pricing-head{text-align:center;margin-bottom:48px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:stretch}
+.card{position:relative;background:linear-gradient(180deg,#151515,#0d0d0d);border:1px solid #292929;border-radius:16px;padding:30px 22px;display:flex;flex-direction:column}
+.card.popular{border-color:var(--gold);box-shadow:0 15px 50px #d8b34a18;transform:translateY(-8px)}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#111;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:900;white-space:nowrap}
+.card h3{font-size:19px}
+.price{font-size:36px;font-weight:900;margin:12px 0}
+.card p{color:#aaa;min-height:72px}
+.card ul{list-style:none;margin:22px 0;flex:1}
+.card li{color:#ddd;margin:10px 0;font-size:14px}
+.card li::before{content:"✓";color:var(--gold);font-weight:900;margin-right:8px}
+/* telegram */
+.telegram{margin-top:42px;padding:30px;border:1px solid #252525;border-radius:16px;background:linear-gradient(135deg,#111,#0b0b0b);text-align:center}
+.telegram h3{font-size:24px;margin-bottom:8px}
+.telegram p{color:#aaa;margin-bottom:18px}
+.telegram .btn{max-width:320px;margin:auto}
+/* footer */
+footer{padding:45px 0 95px;border-top:1px solid #1c1c1c;text-align:center;background:#030303}
+footer p{color:#666;font-size:13px;margin:6px}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:18px;color:#777;font-size:12px}
+/* floating */
+.float-telegram{position:fixed;left:14px;right:14px;bottom:14px;z-index:500;display:none}
+.float-telegram a{display:flex;justify-content:center;align-items:center;background:#118dcc;color:#fff;border-radius:12px;padding:13px;font-weight:800;box-shadow:0 12px 35px #000}
+/* responsive */
+@media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:30px}.about-photo{max-height:650px}.card.popular{transform:none}}
+@media(max-width:650px){section{padding:62px 0}.container{width:min(100% - 22px,1180px)}.hero{min-height:88vh}.hero-content{padding:90px 0 45px}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}.pricing-grid{grid-template-columns:1fr}.float-telegram{display:block}.hero h1{font-size:48px}.about p{font-size:15px}}
+
+.gallery-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;padding:20px;background:linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.88));backdrop-filter:blur(1.5px)}
+.gallery-lock strong{color:var(--gold);font-size:12px;letter-spacing:1px}
+.gallery-lock span{font-size:12px;color:#ddd;margin-top:5px}
+.locked-preview img{filter:saturate(.9) brightness(.8)}
+
+.gallery-item{cursor:pointer}
+.public-preview img{filter:none!important}
+.preview-tag{position:absolute;top:14px;left:14px;background:var(--gold);color:#111;font-weight:900;font-size:11px;padding:6px 11px;border-radius:20px;letter-spacing:1px}
+.gallery-caption{position:absolute;left:0;right:0;bottom:0;padding:38px 16px 16px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-size:13px;color:#fff;font-weight:600}
+.locked img{filter:blur(13px) brightness(.55) saturate(.7);transform:scale(1.08)}
+.lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(0,0,0,.18);padding:18px}
+.lock-icon{font-size:30px;margin-bottom:8px}
+.lock-overlay strong{color:#fff;font-size:12px;letter-spacing:1.2px}
+.lock-overlay span{color:#bbb;font-size:11px;margin-top:5px}
+.locked:hover img{filter:blur(10px) brightness(.62) saturate(.75)}
+
+/* PIX MODAL */
+.pix-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:5000;align-items:center;justify-content:center;padding:18px}
+.pix-modal.open{display:flex}
+.pix-box{width:min(100%,520px);max-height:92vh;overflow:auto;background:#121212;border:1px solid #3a1b28;border-radius:22px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.55);position:relative}
+.pix-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#aaa;font-size:28px;cursor:pointer}
+.pix-title{font-family:Montserrat,sans-serif;font-size:26px;font-weight:800;margin:0 36px 6px 0}
+.pix-subtitle{color:#aaa;margin:0 0 18px}
+.pix-price{font-size:34px;font-weight:800;color:#e7b85c;margin:10px 0 18px}
+.pix-qr{display:block;width:min(100%,280px);aspect-ratio:1;margin:0 auto 18px;background:#fff;border-radius:14px;padding:10px;object-fit:contain}
+.pix-copy{display:flex;gap:8px;margin:12px 0}
+.pix-copy input{flex:1;min-width:0;background:#080808;border:1px solid #333;color:#eee;border-radius:10px;padding:12px;font-size:12px}
+.pix-copy button{border:1px solid #a97b32;background:#a97b32;color:#111;border-radius:10px;padding:0 14px;font-weight:800;cursor:pointer}
+.pix-status{border-radius:12px;padding:12px;background:#191919;color:#ddd;text-align:center;margin-top:14px}
+.pix-status.ok{background:#102719;color:#9ce0ae;border:1px solid #285b36}
+.pix-status.err{background:#2a1414;color:#ffaaa8;border:1px solid #6d2b2b}
+.pix-telegram{display:none;margin-top:14px;width:100%;text-align:center}
+.pix-telegram.show{display:block}
+.pix-note{font-size:12px;color:#777;text-align:center;margin-top:14px;line-height:1.5}
+
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">BRUNA CAMILA</div>
+    <h2>CONTEÚDO EXCLUSIVO +18</h2>
+    <p>Este espaço é destinado exclusivamente a maiores de 18 anos. Ao entrar, você confirma que possui 18 anos ou mais.</p>
+    <div class="gate-actions">
+      <button class="btn primary" onclick="enterSite()">SOU MAIOR DE 18 ANOS — ENTRAR</button>
+      <button class="btn outline" onclick="leaveSite()">SAIR</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">ESPAÇO EXCLUSIVO • +18</div>
+    <h1>Bruna <span>Camila</span></h1>
+    <p>Meu lado exclusivo começa aqui. Confira as opções disponíveis e escolha a experiência que combina com você.</p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="go('pricing')">🔥 VER PROMOÇÕES</button>
+      <button class="btn outline" onclick="go('gallery')">CONHECER O CONTEÚDO</button>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <img class="about-photo" src="images/bruna-4.jpg" alt="Bruna Camila">
+    <div>
+      <div class="section-kicker">Sobre este espaço</div>
+      <h2>Prazer, eu sou a Bruna.</h2>
+      <p>Criei este espaço para compartilhar um lado mais exclusivo da minha rotina, meus momentos e conteúdos especiais.</p>
+      <p>Aqui você encontra prévias, vídeos e diferentes opções de acesso, tudo organizado em um só lugar.</p>
+      <div class="telegram-note">
+        <strong>💬 Quer ver outras promoções?</strong>
+        <span class="muted">Algumas opções e novidades ficam disponíveis diretamente no Telegram.</span>
+        <a class="btn outline" href="https://t.me/Camillacampbot" target="_blank" rel="noopener">🔥 IR PARA O TELEGRAM</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <div class="section-kicker">Prévia</div>
+      <h2>Um gostinho do que você vai encontrar</h2>
+      <p class="muted">Confira algumas imagens de apresentação. O conteúdo completo fica disponível conforme a opção escolhida.</p>
+    </div>
+    <div class="gallery-grid">
+      <!-- PRÉVIA PÚBLICA: nova foto enviada pelo usuário -->
+      <div class="gallery-item public-preview">
+        <img src="images/bruna-destaque.jpg" alt="Bruna Camila — prévia">
+        <div class="preview-tag">✨ PRÉVIA</div>
+        <div class="gallery-caption">Uma pequena prévia do conteúdo exclusivo</div>
+      </div>
+
+      <!-- CONTEÚDO BLOQUEADO -->
+      <div class="gallery-item locked">
+        <img src="images/bruna-1.jpg" alt="Conteúdo exclusivo bloqueado">
+        <div class="lock-overlay"><div class="lock-icon">🔒</div><strong>CONTEÚDO BLOQUEADO</strong><span>Desbloqueie para ver</span></div>
+      </div>
+      <div class="gallery-item locked">
+        <img src="images/bruna-2.jpg" alt="Conteúdo exclusivo bloqueado">
+        <div class="lock-overlay"><div class="lock-icon">🔒</div><strong>CONTEÚDO BLOQUEADO</strong><span>Desbloqueie para ver</span></div>
+      </div>
+      <div class="gallery-item locked">
+        <img src="images/bruna-3.jpg" alt="Conteúdo exclusivo bloqueado">
+        <div class="lock-overlay"><div class="lock-icon">🔒</div><strong>CONTEÚDO BLOQUEADO</strong><span>Desbloqueie para ver</span></div>
+      </div>
+      <div class="gallery-item locked">
+        <img src="images/bruna-5.jpg" alt="Conteúdo exclusivo bloqueado">
+        <div class="lock-overlay"><div class="lock-icon">🔒</div><strong>CONTEÚDO BLOQUEADO</strong><span>Desbloqueie para ver</span></div>
+      </div>
+      <div class="gallery-item locked">
+        <img src="images/bruna-6.jpg" alt="Conteúdo exclusivo bloqueado">
+        <div class="lock-overlay"><div class="lock-icon">🔒</div><strong>CONTEÚDO BLOQUEADO</strong><span>Desbloqueie para ver</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="video" id="video">
+  <div class="container">
+    <div class="section-kicker">Vídeo</div>
+    <h2>Quer ver mais?</h2>
+    <p class="muted">Uma pequena prévia do material disponível.</p>
+    <div class="video-box">
+      <video controls playsinline preload="metadata">
+        <source src="video-bruna.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+    </div>
+    <button class="btn outline" style="max-width:300px" onclick="go('pricing')">VER OFERTAS</button>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-head">
+      <div class="section-kicker">Escolha sua opção</div>
+      <h2>🔥 Promoções Exclusivas</h2>
+      <p class="muted">Os links de pagamento serão configurados depois.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="card">
+        <h3>🩷 QUEBRA-GALHO</h3>
+        <div class="price">R$ 9,90</div>
+        <p>Uma opção econômica para conhecer o conteúdo.</p>
+        <ul><li>Acesso à opção básica</li><li>Conteúdo selecionado</li><li>Acesso via Telegram</li></ul>
+        <button class="btn outline" onclick="checkout('QUEBRA_GALHO')">QUERO A QUEBRA-GALHO</button>
+      </article>
+
+      <article class="card">
+        <h3>✨ START</h3>
+        <div class="price">R$ 19,90</div>
+        <p>Uma seleção especial para quem quer mais conteúdo.</p>
+        <ul><li>Galeria estendida</li><li>Conteúdo selecionado</li><li>Acesso via Telegram</li></ul>
+        <button class="btn outline" onclick="checkout('START')">QUERO ESSA OFERTA</button>
+      </article>
+
+      <article class="card popular">
+        <div class="badge">MAIS VENDIDA</div>
+        <h3 style="color:var(--gold)">🔥 PREMIUM</h3>
+        <div class="price">R$ 29,90</div>
+        <p>Uma opção completa com fotos, vídeos e conteúdos adicionais.</p>
+        <ul><li>Tudo do Start</li><li>Vídeos selecionados</li><li>Conteúdos adicionais</li><li>Acesso via Telegram</li></ul>
+        <button class="btn primary" onclick="checkout('PREMIUM')">QUERO A PREMIUM</button>
+      </article>
+
+      <article class="card">
+        <h3 style="color:#c38de0">👑 VIP</h3>
+        <div class="price">R$ 49,90</div>
+        <p>A opção mais completa entre as promoções do site.</p>
+        <ul><li>Maior seleção de material</li><li>Fotos e vídeos</li><li>Conteúdos adicionais</li><li>Acesso via Telegram</li></ul>
+        <button class="btn gold" onclick="checkout('VIP')">QUERO SER VIP</button>
+      </article>
+    </div>
+
+    <div class="telegram">
+      <h3>Não encontrou o que procura?</h3>
+      <p>Confira outras promoções e novidades diretamente no Telegram.</p>
+      <a class="btn gold" href="https://t.me/Camillacampbot" target="_blank" rel="noopener">VER OUTRAS PROMOÇÕES</a>
+    </div>
+  </div>
+</section>
+
+
+<div class="pix-modal" id="pix-modal" aria-hidden="true">
+  <div class="pix-box">
+    <button class="pix-close" onclick="closePix()" aria-label="Fechar">×</button>
+    <div class="pix-title" id="pix-plan-title">Pagamento via PIX</div>
+    <div class="pix-subtitle">Escaneie o QR Code ou copie o código PIX abaixo.</div>
+    <div class="pix-price" id="pix-plan-price">R$ 0,00</div>
+    <img id="pix-qr" class="pix-qr" alt="QR Code PIX" />
+    <div class="pix-copy">
+      <input id="pix-code" readonly placeholder="Gerando PIX..." />
+      <button onclick="copyPix()">COPIAR</button>
+    </div>
+    <div class="pix-status" id="pix-status">Gerando sua cobrança PIX...</div>
+    <a id="pix-telegram" class="btn primary pix-telegram" href="https://t.me/Camillacampbot" target="_blank" rel="noopener">ENTRAR NO TELEGRAM</a>
+    <div class="pix-note">O pagamento é confirmado automaticamente pela Atenas Pay. Não feche esta janela enquanto o pagamento estiver pendente.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>Conteúdo destinado exclusivamente a maiores de 18 anos.</p>
+    <p>© 2026 Bruna Camila — Todos os direitos reservados.</p>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a><a href="#">Privacidade</a><a href="#">Política de Conteúdo</a><a href="https://t.me/Camillacampbot" target="_blank">Contato</a>
+    </div>
+  </div>
+</footer>
+
+<div class="float-telegram">
+  <a href="https://t.me/Camillacampbot" target="_blank" rel="noopener">💬 VER OUTRAS PROMOÇÕES NO TELEGRAM</a>
+</div>
+
+<script>
+const CONFIG = {
+  API_BASE: "/api",
+  TELEGRAM_LINK: "https://t.me/Camillacampbot"
+};
+
+const OFFERS = {
+  QUEBRA_GALHO: {name:"🩷 QUEBRA-GALHO", amount:9.90},
+  START: {name:"✨ START", amount:19.90},
+  PREMIUM: {name:"🔥 PREMIUM", amount:29.90},
+  VIP: {name:"👑 VIP", amount:49.90}
+};
+
+let currentPayment = null;
+let pollTimer = null;
+
+function enterSite(){
+  document.getElementById("gate").style.display="none";
+  sessionStorage.setItem("ageVerified","true");
+}
+function leaveSite(){ window.history.back(); }
+if(sessionStorage.getItem("ageVerified")==="true") document.getElementById("gate").style.display="none";
+function go(id){ document.getElementById(id).scrollIntoView({behavior:"smooth"}); }
+
+async function checkout(plan){
+  const offer=OFFERS[plan];
+  if(!offer) return;
+  const modal=document.getElementById("pix-modal");
+  const status=document.getElementById("pix-status");
+  document.getElementById("pix-plan-title").textContent=offer.name;
+  document.getElementById("pix-plan-price").textContent=offer.amount.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  document.getElementById("pix-qr").removeAttribute("src");
+  document.getElementById("pix-code").value="";
+  document.getElementById("pix-telegram").classList.remove("show");
+  status.className="pix-status";
+  status.textContent="Gerando sua cobrança PIX...";
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  clearInterval(pollTimer);
+  currentPayment=null;
+  try{
+    const res=await fetch(CONFIG.API_BASE+"/create-payment",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({plan})
+    });
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error||"Não foi possível gerar o PIX.");
+    currentPayment=data;
+    document.getElementById("pix-code").value=data.pix_copia_cola||"";
+    if(data.qr_code_base64) document.getElementById("pix-qr").src=data.qr_code_base64;
+    status.textContent="Aguardando pagamento...";
+    pollPayment();
+    pollTimer=setInterval(pollPayment,3500);
+  }catch(err){
+    status.className="pix-status err";
+    status.textContent=err.message;
+  }
+}
+
+async function pollPayment(){
+  if(!currentPayment?.id) return;
+  try{
+    const res=await fetch(CONFIG.API_BASE+"/payment/"+encodeURIComponent(currentPayment.id));
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error||"Falha ao consultar pagamento.");
+    const status=document.getElementById("pix-status");
+    if(data.status==="paid"){
+      clearInterval(pollTimer);
+      status.className="pix-status ok";
+      status.textContent="✅ Pagamento confirmado! Seu acesso está liberado.";
+      const tg=document.getElementById("pix-telegram");
+      tg.href=CONFIG.TELEGRAM_LINK;
+      tg.classList.add("show");
+    }else if(data.status==="expired"||data.status==="cancelled"){
+      clearInterval(pollTimer);
+      status.className="pix-status err";
+      status.textContent="Este PIX expirou ou foi cancelado. Feche e gere uma nova cobrança.";
+    }else{
+      status.className="pix-status";
+      status.textContent="⏳ Aguardando pagamento...";
+    }
+  }catch(err){
+    // Mantém o estado visual; a próxima tentativa automática consulta novamente.
+  }
+}
+
+async function copyPix(){
+  const input=document.getElementById("pix-code");
+  if(!input.value) return;
+  try{ await navigator.clipboard.writeText(input.value); }
+  catch{ input.select(); document.execCommand("copy"); }
+  const btn=document.querySelector(".pix-copy button");
+  const old=btn.textContent; btn.textContent="COPIADO!"; setTimeout(()=>btn.textContent=old,1400);
+}
+
+function closePix(){
+  clearInterval(pollTimer);
+  document.getElementById("pix-modal").classList.remove("open");
+  document.getElementById("pix-modal").setAttribute("aria-hidden","true");
+}
+document.getElementById("pix-modal").addEventListener("click",e=>{if(e.target.id==="pix-modal")closePix();});
+</script>
+</body>
+</html>

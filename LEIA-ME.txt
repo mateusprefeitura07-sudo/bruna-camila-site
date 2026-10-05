@@ -1,0 +1,27 @@
+BRUNA CAMILA — PIX ATENAS PAY
+
+O site agora usa PIX direto pela API da Atenas Pay, sem checkout.
+
+1) NÃO coloque sua API Key dentro do index.html.
+2) Copie .env.example para .env.
+3) Coloque a nova API Key no campo ATENAS_API_KEY.
+4) Configure PUBLIC_BASE_URL com o endereço público do servidor.
+5) Opcional/recomendado: configure WEBHOOK_SECRET com o segredo do webhook da Atenas Pay.
+6) Instale as dependências: npm install
+7) Inicie: npm start
+
+Endpoints do sistema:
+POST /api/create-payment — cria PIX para uma das 4 ofertas.
+GET /api/payment/:id — consulta status do PIX.
+POST /api/webhooks/atenas — recebe payment.confirmed da Atenas Pay.
+
+Ofertas:
+QUEBRA_GALHO = R$ 9,90
+START = R$ 19,90
+PREMIUM = R$ 29,90
+VIP = R$ 49,90
+
+IMPORTANTE:
+- A chave que foi enviada no chat deve ser revogada e substituída por uma nova.
+- O botão do Telegram é liberado somente após o site consultar status "paid".
+- A automação para o bot Telegram validar o comprador por token é uma etapa separada; este pacote já deixa o pagamento real funcionando e leva o comprador ao @Camillacampbot após a confirmação.
