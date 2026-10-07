@@ -66,15 +66,23 @@ app.post('/api/create-payment', async (req, res) => {
       method: 'POST', body: JSON.stringify(payload)
     });
 
-    res.json({
-      id: data.id,
-      txid: data.txid,
-      external_id: data.external_id || externalId,
-      amount: data.amount || offer.amount,
-      status: data.status || 'pending',
-      pix_copia_cola: data.pix_copia_cola,
-      qr_code_base64: data.qr_code_base64,
-      expires_at: data.expires_at
+    // A API atual retorna os dados da cobrança dentro de `transaction`.
+    // Mantemos compatibilidade caso algum ambiente antigo retorne os campos no nível raiz.
+    const tx = data?.transaction || data;
+    if (!tx?.id || !tx?.pix_copia_cola || !tx?.qr_code_base64) {
+      console.error('Resposta inesperada da Atenas Pay:', JSON.stringify(data));
+      return res.status(502).json({ error: 'A Atenas Pay não retornou os dados completos do PIX.' });
+    }
+
+    res.status(201).json({
+      id: tx.id,
+      txid: tx.txid,
+      external_id: tx.external_id || externalId,
+      amount: tx.amount || offer.amount,
+      status: tx.status || 'pending',
+      pix_copia_cola: tx.pix_copia_cola,
+      qr_code_base64: tx.qr_code_base64,
+      expires_at: tx.expires_at
     });
   } catch (err) {
     console.error(err);
@@ -123,9 +131,11 @@ app.post('/api/webhooks/atenas', (req, res) => {
   }
 });
 
+app.get('/api/health', (req, res) => res.json({ ok: true }));
+
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Bruna Camila site rodando na porta ${PORT}`);
   if (!API_KEY) console.warn('ATENÇÃO: ATENAS_API_KEY não configurada.');
 });
